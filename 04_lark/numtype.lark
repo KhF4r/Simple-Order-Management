@@ -1,0 +1,47 @@
+// ============================================================================
+// DSL "NumType": bahasa mini untuk memeriksa tipe numerik int / float (+ str)
+// Notasi: EBNF versi Lark   ( [x] = opsional,  x* = nol/lebih,  x+ = satu/lebih,
+//                              a | b = pilihan,  "..." = token literal )
+// ============================================================================
+
+start   : stmt+
+
+?stmt   : decl                      // float total = 0.0;
+        | assign                    // total = total + 1;
+        | fndecl                    // fn calculate_tax(float tax_rate) -> float;
+
+decl    : type NAME "=" expr ";"
+assign  : NAME "=" expr ";"
+fndecl  : "fn" NAME "(" [params] ")" "->" type ";"
+params  : param ("," param)*
+param   : type NAME
+
+type    : INT_T | FLOAT_T | STR_T
+
+// ---- ekspresi: tingkat prioritas dibangun lewat rantai aturan (EBNF klasik)
+?expr   : expr ADD term   -> binop          // + -   (prioritas rendah, asosiatif kiri)
+        | term
+?term   : term MUL factor -> binop          // * /   (prioritas tinggi, asosiatif kiri)
+        | factor
+?factor : NUMBER                    -> num
+        | STRING                    -> string
+        | NAME                      -> var
+        | NAME "(" [args] ")"       -> call
+        | "(" expr ")"
+        | "-" factor                -> neg
+args    : expr ("," expr)*
+
+// ---- terminal (token)
+INT_T   : "int"
+FLOAT_T : "float"
+STR_T   : "str"
+ADD     : "+" | "-"
+MUL     : "*" | "/"
+NUMBER  : /\d+(\.\d+)?/          // "42" -> int,  "3.14" -> float
+STRING  : /"[^"]*"/
+NAME    : /[A-Za-z_][A-Za-z0-9_]*/
+COMMENT : /\/\/[^\n]*/
+
+%import common.WS
+%ignore WS
+%ignore COMMENT

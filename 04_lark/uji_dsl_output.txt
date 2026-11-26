@@ -1,0 +1,27 @@
+PASS  int + int valid                        -
+PASS  int literal ke float (pelebaran)       -
+PASS  float literal ke int (penyempitan)     ['E-NARROW']
+PASS  int / int menghasilkan float           ['E-NARROW']
+PASS  int / int ke float valid               -
+PASS  str ke int                             ['E-MISMATCH']
+PASS  angka ke str                           ['E-MISMATCH']
+PASS  prioritas * di atas +                  -
+PASS  kurung + campuran int/float            -
+PASS  asosiatif kiri a-b-c                   -
+PASS  unary minus pada str                   ['E-OP']
+PASS  str + angka                            ['E-OP']
+PASS  str * angka                            ['E-OP']
+PASS  assign sebelum deklarasi               ['E-UNDECL']
+PASS  deklarasi ganda                        ['E-REDECL']
+PASS  tipe variabel statis (int<-float)      ['E-NARROW']
+PASS  fungsi: arity salah                    ['E-ARITY']
+PASS  fungsi: int ke param float OK          -
+PASS  fungsi: float ke param int             ['E-NARROW']
+PASS  fungsi tak dideklarasikan              ['E-UNDEF-FN']
+PASS  tanpa galat beruntun                   ['E-OP']
+PASS  identifier berawalan keyword           -
+PASS  sintaks: titik koma hilang             ditolak parser
+PASS  sintaks: tipe tak dikenal              ditolak parser
+PASS  sintaks: ekspresi kosong               ditolak parser
+
+25/25 lulus

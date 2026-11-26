@@ -1,0 +1,2 @@
+fn calculate_tax(float tax_rate) -> float;
+float tax = calculate_tax("0.11") * 2 + 1;

@@ -1,0 +1,7 @@
+tree-sitter>=0.25
+tree-sitter-python
+tree-sitter-java
+lark
+mypy
+pyflakes
+pylint

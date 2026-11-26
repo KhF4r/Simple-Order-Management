@@ -1,0 +1,14 @@
+// Model numerik dari simple_order_management.py
+// Penanda [Bx] mengacu ke bug pada hasil No.3 (nomor baris Python asli di sampingnya).
+fn calculate_tax(float tax_rate) -> float;       // Order.calculate_tax(self, tax_rate: float) -> float
+float total = 0.0;
+int quantity = 2;
+float price = 7500000;                           // int -> float: boleh
+total = total + price * quantity;                // benar: float
+float tax = calculate_tax("0.11");               // [B2] baris 41: str dikirim ke parameter float
+float status_code = order_status;                // [B4] baris 57: nama tidak pernah didefinisikan
+int bulk = 0;                                    // di Python: total = 0 (disimpulkan int)
+float discount = 10.5;
+bulk = bulk - discount;                          // [B6] baris 66: float disimpan ke variabel int
+str label = "Total: " + bulk;                    // [B7] baris 67: str + angka
+float hasil = "Total: " + total;                 // [B7] baris 67: str + float; (return str padahal -> float)

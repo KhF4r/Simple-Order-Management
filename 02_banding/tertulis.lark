@@ -1,0 +1,32 @@
+// Grammar CFG "ala buku teks" untuk potongan Python pada aplikasi order.
+// Sengaja ditulis rekursif (BNF) dan berjenjang (Expr -> Term -> Factor -> Atom)
+// seperti yang biasa digambar tangan pada mata kuliah teori bahasa / kompilasi.
+
+header    : "def" NAME "(" paramlist ")" ":"
+
+paramlist : param
+          | param "," paramlist
+param     : NAME
+          | NAME ":" type
+type      : NAME
+
+stmt      : assign
+assign    : NAME "=" expr
+
+expr      : expr "+" term
+          | term
+term      : term "*" factor
+          | factor
+factor    : atom
+atom      : NAME
+          | NUMBER
+          | STRING
+          | atom "." NAME
+          | atom "(" arglist ")"
+arglist   : expr
+          | expr "," arglist
+
+NAME   : /[A-Za-z_][A-Za-z0-9_]*/
+NUMBER : /\d+(\.\d+)?/
+STRING : /"[^"]*"/
+%ignore /\s+/

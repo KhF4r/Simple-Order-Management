@@ -1,0 +1,91 @@
+
+==============================================================================
+A. SCOPE: tabel simbol (symtable) + pemeriksa scope mini
+==============================================================================
+[module] top  (baris 0)
+  [class] Product  (baris 1)
+    [annotation] __annotate__  (baris 2)
+    [function] __init__  (baris 2)
+        self           parameter
+        product_id     parameter
+        name           parameter
+        price          parameter
+  [class] Order  (baris 7)
+    [annotation] __annotate__  (baris 8)
+    [function] __init__  (baris 8)
+        self           parameter
+        customer       parameter
+    [annotation] __annotate__  (baris 12)
+    [function] add_item  (baris 12)
+        self           parameter
+        product        parameter
+        quantity       parameter
+        ValueError     GLOBAL (dibaca)
+    [annotation] __annotate__  (baris 20)
+    [function] apply_discount  (baris 20)
+        self           parameter
+        percentage     parameter
+        ValueError     GLOBAL (dibaca)
+        discount       lokal
+    [annotation] __annotate__  (baris 25)
+    [function] calculate_tax  (baris 25)
+        self           parameter
+        tax_rate       parameter
+        tax            lokal
+  [class] OrderService  (baris 29)
+    [annotation] __annotate__  (baris 30)
+    [function] __init__  (baris 30)
+        self           parameter
+    [annotation] __annotate__  (baris 32)
+    [function] create_order  (baris 32)
+        self           parameter
+        customer       parameter
+        order          lokal
+        Order          GLOBAL (dibaca)
+    [annotation] __annotate__  (baris 36)
+    [function] process_order  (baris 36)
+        self           parameter
+        order          parameter
+        discount       parameter
+        final_price    lokal
+        tax            lokal
+    [annotation] __annotate__  (baris 44)
+    [function] find_order  (baris 44)
+        self           parameter
+        order_id       parameter
+        order          lokal
+    [annotation] __annotate__  (baris 49)
+    [function] generate_report  (baris 49)
+        self           parameter
+        report         lokal
+        order          lokal
+        customer_name  lokal
+        total_price    lokal
+        order_status   GLOBAL (dibaca)
+  [annotation] __annotate__  (baris 61)
+  [function] calculate_bulk_price  (baris 61)
+      products       parameter
+      discount       parameter
+      total          lokal
+      product        lokal
+  [annotation] __annotate__  (baris 69)
+  [function] main  (baris 69)
+      service        lokal
+      OrderService   GLOBAL (dibaca)
+      product1       lokal
+      Product        GLOBAL (dibaca)
+      product2       lokal
+      order          lokal
+      final_price    lokal
+      print          GLOBAL (dibaca)
+      report         lokal
+
+Pemeriksa scope mini (simbol GLOBAL yang dibaca tapi tidak pernah didefinisikan):
+Traceback (most recent call last):
+  File "C:\Users\Khalifah\Documents\Kuliah\Coding Stuff\PLP\Praktek\P9\simple_order_management\03_semantik\analisis.py", line 54, in <module>
+    print(f"   \u2717 '{nama}' dirujuk di {fn}() tapi tidak ada di scope modul maupun builtin")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Khalifah\AppData\Local\Programs\Python\Python314\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2717' in position 3: character maps to <undefined>

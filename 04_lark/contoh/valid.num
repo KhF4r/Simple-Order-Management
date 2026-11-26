@@ -1,0 +1,10 @@
+// Program benar: seluruh aturan tipe terpenuhi
+int quantity = 2;
+float price = 7500000;              // int -> float: pelebaran, boleh
+float total = price * quantity;     // float * int -> float
+float rata = total / quantity;      // "/" selalu float
+int sisa = 3 * 2 + 1;               // int murni
+str label = "Total: " + "ok";       // str + str
+fn calculate_tax(float tax_rate) -> float;
+float pajak = calculate_tax(0.11);
+total = total + pajak;

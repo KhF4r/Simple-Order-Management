@@ -1,0 +1,7 @@
+contoh/order_bugs.num:8: E-MISMATCH: argumen ke-1 untuk calculate_tax(): tipe str tidak cocok dengan float
+contoh/order_bugs.num:9: E-UNDECL: variabel 'order_status' belum dideklarasikan (tidak ada di scope)
+contoh/order_bugs.num:12: E-NARROW: assignment ke bulk (int): float tidak bisa disimpan ke int (penyempitan, presisi hilang)
+contoh/order_bugs.num:13: E-OP: operator '+' tidak didefinisikan untuk str dan int
+contoh/order_bugs.num:14: E-OP: operator '+' tidak didefinisikan untuk str dan float
+
+5 galat tipe/scope.

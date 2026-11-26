@@ -1,0 +1,14 @@
+==============================================================================
+EKSPERIMEN: mypy setelah anotasi tipe dilengkapi
+==============================================================================
+Perubahan: self.orders: list[Order],  self.items: list[dict[str, object]],  products: list[Product]
+
+  baris 41  arg-type       Argument 1 to "calculate_tax" of "Order" has incompatible type "str"; expected "float"
+Traceback (most recent call last):
+  File "C:\Users\Khalifah\Documents\Kuliah\Coding Stuff\PLP\Praktek\P9\simple_order_management\04_lark\banding_no3_no4.py", line 32, in <module>
+    print(f"  baris {b:>2}  {kode:<14} {pesan}{tanda}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Khalifah\AppData\Local\Programs\Python\Python314\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2190' in position 58: character maps to <undefined>
